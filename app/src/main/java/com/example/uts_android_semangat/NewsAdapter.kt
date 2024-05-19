@@ -37,21 +37,20 @@ class NewsAdapter(private val context: Context, private val dataSource: List<New
             view.tag = holder
         } else {
             view = convertView
-            holder = convertView.tag as ViewHolder
+            holder = view.tag as ViewHolder
         }
 
-        val newsData = getItem(position) as NewsData
-
-        holder.thumbnailImageView?.setImageResource(newsData.imageResId)
-        holder.titleTextView?.text = newsData.title
-        holder.descriptionTextView?.text = newsData.description
+        val news = getItem(position) as NewsData
+        holder.thumbnailImageView.setImageResource(news.imageResId)
+        holder.titleTextView.text = news.title
+        holder.descriptionTextView.text = news.shortDescription
 
         return view
     }
 
     private class ViewHolder {
-        var thumbnailImageView: ImageView? = null
-        var titleTextView: TextView? = null
-        var descriptionTextView: TextView? = null
+        lateinit var thumbnailImageView: ImageView
+        lateinit var titleTextView: TextView
+        lateinit var descriptionTextView: TextView
     }
 }
